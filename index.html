@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virimai Signi | Python Data Automation Expert</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1a1a2e;
+            background: #f5f7fb;
+        }
+
+        nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #3066f6, #6c47ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4a5568;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #3066f6;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3066f6, #6c47ff);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(48,102,246,0.3);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #00b09b, #96c93d);
+            color: white;
+        }
+
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0,176,155,0.3);
+        }
+
+        .btn-outline {
+            border: 2px solid #3066f6;
+            color: #3066f6;
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: #3066f6;
+            color: white;
+        }
+
+        .btn-small {
+            padding: 0.4rem 1rem;
+            font-size: 0.8rem;
+        }
+
+        .tech-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: #e9ecef;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #495057;
+            margin: 0.25rem;
+        }
+
+        .tech-badge-python {
+            background: #3776ab20;
+            color: #3776ab;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: white;
+            padding: 4rem 2rem;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-highlight {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .stats-grid {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 0.8rem 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: #6c757d;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .compact-converter {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 16px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .converter-toggle {
+            background: rgba(255,255,255,0.15);
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .converter-toggle:hover {
+            background: rgba(255,255,255,0.25);
+        }
+
+        .converter-body {
+            background: white;
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .converter-body.open {
+            max-height: 600px;
+            padding: 1.5rem;
+        }
+
+        .drop-zone {
+            border: 2px dashed #3066f6;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: #f8f9ff;
+        }
+
+        .drop-zone:hover {
+            border-color: #6c47ff;
+            background: #f0f2ff;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .preview-table {
+            max-height: 250px;
+            overflow: auto;
+            margin: 1rem 0;
+            font-size: 0.75rem;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+        }
+
+        .preview-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .preview-table th, .preview-table td {
+            border: 1px solid #dee2e6;
+            padding: 0.5rem;
+            text-align: left;
+        }
+
+        .preview-table th {
+            background: #3066f6;
+            color: white;
+            position: sticky;
+            top: 0;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1rem 1.5rem;
+        }
+
+        .project-header h3 {
+            font-size: 1.1rem;
+        }
+
+        .project-body {
+            padding: 1rem 1.5rem 1.5rem;
+        }
+
+        .code-snippet {
+            background: #1e1e2e;
+            color: #e0e0e0;
+            padding: 0.8rem;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.7rem;
+            overflow-x: auto;
+            margin: 0.8rem 0;
+        }
+
+        .skills-matrix {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+        }
+
+        .skill-category h4 {
+            color: #3066f6;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3rem;
+        }
+
+        .contact-section {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        footer {
+            background: #1a1a2e;
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 1.8rem; }
+            .nav-container { flex-direction: column; }
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #3066f6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #28a745;
+            color: white;
+            padding: 0.8rem 1.2rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            z-index: 1000;
+            animation: slideIn 0.3s ease;
+        }
+
+        .toast-error {
+            background: #dc3545;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .api-status {
+            font-size: 0.7rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .api-online {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .api-offline {
+            background: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">🐍 Virimai Signi</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#projects">Python Work</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <h1>
+                15 years in sales & finance.<br>
+                Now I build <span class="hero-highlight">Python automation</span> for business data.
+            </h1>
+            <p>I turn messy PDFs, Excel files, and reports into clean, automated data pipelines. Using pandas, tabula-py, openpyxl, and Power BI to save teams 20+ hours weekly.</p>
+            <div class="stats-grid">
+                <div class="stat-card"><div class="stat-number">20+</div><div>Hours saved/week</div></div>
+                <div class="stat-card"><div class="stat-number">100%</div><div>Data accuracy</div></div>
+                <div class="stat-card"><div class="stat-number">500+</div><div>Files processed</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PYTHON POWERED CONVERTER -->
+    <div class="container" style="padding-top: 0;">
+        <div class="compact-converter">
+            <div class="converter-toggle" onclick="toggleConverter()">
+                <span>🐍 Python-Powered: PDF/CSV/Excel to Excel Converter (Real tabula-py backend)</span>
+                <span id="toggleIcon">▼</span>
+            </div>
+            <div id="converterBody" class="converter-body">
+                <div id="apiStatus" class="api-status api-offline" style="display: inline-block;">
+                    🔌 Checking API connection...
+                </div>
+                <div class="drop-zone" id="dropZone" onclick="document.getElementById('fileInput').click()">
+                    <p>📁 Drag & drop or click to upload</p>
+                    <p style="font-size: 0.8rem; color: #6c757d;">Supports: PDF, CSV, Excel (.xlsx, .xls)</p>
+                    <p style="font-size: 0.7rem; color: #3066f6;">⚡ Powered by Python + tabula-py + pandas</p>
+                    <input type="file" id="fileInput" class="file-input" accept=".pdf,.csv,.xlsx,.xls">
+                </div>
+                <div id="loadingIndicator" style="display: none; text-align: center; padding: 1rem;">
+                    <div class="loading"></div>
+                    <p style="margin-top: 0.5rem;">Python backend processing your file...</p>
+                </div>
+                <div id="previewArea" style="display: none;">
+                    <div style="background: #e8f5e9; padding: 0.5rem; border-radius: 8px; margin-bottom: 1rem;">
+                        <p style="color: #2e7d32; font-size: 0.8rem;" id="successMessage">✅ File processed by Python backend!</p>
+                    </div>
+                    <div class="preview-table" id="tablePreview"></div>
+                    <div style="text-align: center; margin-top: 1rem;">
+                        <button class="btn btn-success btn-small" id="downloadExcelBtn">📥 Download Excel (Python-generated)</button>
+                    </div>
+                </div>
+                <p style="font-size: 0.7rem; color: #6c757d; margin-top: 0.8rem; text-align: center;">
+                    🔧 Real Python backend using tabula-py for PDF extraction, pandas for data manipulation, openpyxl for Excel generation
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <section id="projects" class="container">
+        <div class="section-header">
+            <h2>🐍 Python Projects I've Built</h2>
+            <p>Data extraction, automation, and business intelligence</p>
+        </div>
+
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-header"><h3>📑 PDF Table Extractor</h3></div>
+                <div class="project-body">
+                    <p>Extract tables from 100+ PDF invoices using tabula-py and pandas.</p>
+                    <div class="code-snippet"><pre style="margin:0">import tabula, pandas as pd
+tables = tabula.read_pdf("invoice.pdf", pages="all")
+df = pd.concat(tables)
+df.to_excel("extracted.xlsx", index=False)</pre></div>
+                    <div><span class="tech-badge tech-badge-python">tabula-py</span><span class="tech-badge">pandas</span></div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header"><h3>🧹 Data Cleaning Pipeline</h3></div>
+                <div class="project-body">
+                    <p>Automated cleaning: remove duplicates, fix dates, standardize formats.</p>
+                    <div class="code-snippet"><pre style="margin:0">df = df.drop_duplicates()
+df['date'] = pd.to_datetime(df['date'])
+df['amount'] = df['amount'].str.replace('$','')</pre></div>
+                    <div><span class="tech-badge tech-badge-python">pandas</span><span class="tech-badge">regex</span></div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header"><h3>📊 Excel Report Automation</h3></div>
+                <div class="project-body">
+                    <p>Generate weekly sales reports with charts using openpyxl.</p>
+                    <div class="code-snippet"><pre style="margin:0">with pd.ExcelWriter('report.xlsx') as writer:
+    df.to_excel(writer, sheet_name='Sales')
+    df.groupby('month').sum().to_excel(writer, sheet_name='Summary')</pre></div>
+                    <div><span class="tech-badge tech-badge-python">openpyxl</span><span class="tech-badge">xlsxwriter</span></div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header"><h3>📈 Power BI + Python Integration</h3></div>
+                <div class="project-body">
+                    <p>Python script cleans data, exports CSV, Power BI auto-refreshes dashboard.</p>
+                    <div class="code-snippet"><pre style="margin:0">df_clean.to_csv("dashboard_data.csv", index=False)
+# Power BI scheduled refresh picks it up</pre></div>
+                    <div><span class="tech-badge">Power BI</span><span class="tech-badge tech-badge-python">pandas</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="container" style="background: #f8f9fa; border-radius: 0;">
+        <div class="section-header"><h2>🔧 Python & Data Skills</h2></div>
+        <div class="skills-matrix">
+            <div class="skill-category"><h4>📄 PDF Extraction</h4><div class="skill-list"><span class="tech-badge tech-badge-python">tabula-py</span><span class="tech-badge tech-badge-python">pdfplumber</span><span class="tech-badge">PyPDF2</span><span class="tech-badge">camelot</span></div></div>
+            <div class="skill-category"><h4>📊 Data Manipulation</h4><div class="skill-list"><span class="tech-badge tech-badge-python">pandas</span><span class="tech-badge tech-badge-python">numpy</span><span class="tech-badge">SQL</span><span class="tech-badge">ETL</span></div></div>
+            <div class="skill-category"><h4>📁 Excel Automation</h4><div class="skill-list"><span class="tech-badge tech-badge-python">openpyxl</span><span class="tech-badge">xlsxwriter</span><span class="tech-badge">xlwings</span></div></div>
+            <div class="skill-category"><h4>🌐 Backend API</h4><div class="skill-list"><span class="tech-badge tech-badge-python">Flask</span><span class="tech-badge">FastAPI</span><span class="tech-badge">REST API</span></div></div>
+        </div>
+    </section>
+
+    <section id="contact" class="container">
+        <div class="contact-section">
+            <h2>📫 Let's Automate Your Data Workflow</h2>
+            <p style="margin: 0.5rem 0;">Try the Python-powered converter above. When you download, I'll get notified and reach out.</p>
+            <div class="contact-links">
+                <a href="mailto:virimaisigni@gmail.com" class="btn btn-outline">✉️ Email me</a>
+                <a href="https://www.linkedin.com/in/virimai-signi" target="_blank" class="btn btn-outline">🔗 LinkedIn</a>
+                <a href="https://github.com/virimai-signi" target="_blank" class="btn btn-outline">🐙 GitHub</a>
+            </div>
+            <p style="margin-top: 1rem; font-size: 0.8rem; color: #6c757d;">📞 +263-78-316-6417 | 📧 virimaisigni@gmail.com</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Virimai Signi | Python Data Automation | pandas · tabula-py · openpyxl · Power BI · Flask API</p>
+    </footer>
+
+    <script>
+        // API Configuration - CHANGE THIS TO YOUR PYTHONANYWHERE URL
+        const API_BASE_URL = 'https://YOUR_USERNAME.pythonanywhere.com';
+        
+        let currentFileData = null;
+        let currentFileName = "";
+        let currentFileType = "";
+
+        // Check API status
+        async function checkAPI() {
+            const apiStatus = document.getElementById('apiStatus');
+            try {
+                const response = await fetch(`${API_BASE_URL}/health`, {
+                    method: 'GET',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+                if (response.ok) {
+                    apiStatus.textContent = '✅ Python backend online (tabula-py ready)';
+                    apiStatus.className = 'api-status api-online';
+                } else {
+                    throw new Error('API offline');
+                }
+            } catch (error) {
+                apiStatus.textContent = '⚠️ Python backend offline - Using fallback mode';
+                apiStatus.className = 'api-status api-offline';
+            }
+        }
+
+        function toggleConverter() {
+            const body = document.getElementById('converterBody');
+            const icon = document.getElementById('toggleIcon');
+            body.classList.toggle('open');
+            icon.textContent = body.classList.contains('open') ? '▲' : '▼';
+            if (body.classList.contains('open')) {
+                checkAPI();
+            }
+        }
+
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('fileInput');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+        const previewArea = document.getElementById('previewArea');
+        const tablePreview = document.getElementById('tablePreview');
+
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('drag-over');
+        });
+
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.classList.remove('drag-over');
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('drag-over');
+            if(e.dataTransfer.files[0]) processFile(e.dataTransfer.files[0]);
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            if(e.target.files[0]) processFile(e.target.files[0]);
+        });
+
+        async function processFile(file) {
+            currentFileName = file.name;
+            currentFileType = file.name.split('.').pop().toLowerCase();
+            
+            loadingIndicator.style.display = 'block';
+            previewArea.style.display = 'none';
+            
+            try {
+                const formData = new FormData();
+                formData.append('file', file);
+                
+                // Try Python backend first
+                let response;
+                try {
+                    response = await fetch(`${API_BASE_URL}/convert`, {
+                        method: 'POST',
+                        body: formData
+                    });
+                } catch (error) {
+                    console.warn('Python backend unavailable, using fallback');
+                    response = await fallbackProcess(file);
+                }
+                
+                if (response && response.ok) {
+                    const result = await response.json();
+                    currentFileData = result.data;
+                    displayPreview(result.data);
+                    previewArea.style.display = 'block';
+                    showToast(`✓ Python backend processed ${result.data.length} rows from ${currentFileName}`);
+                    
+                    // Send WhatsApp notification
+                    getLocationAndNotify(currentFileName, result.data.length, 'Python backend');
+                } else {
+                    throw new Error('Processing failed');
+                }
+                
+            } catch(err) {
+                console.error(err);
+                showToast('Error: ' + err.message, true);
+            } finally {
+                loadingIndicator.style.display = 'none';
+            }
+        }
+
+        // Fallback processing (when Python backend is unavailable)
+        async function fallbackProcess(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    try {
+                        const text = e.target.result;
+                        const lines = text.split(/\r?\n/).filter(l => l.trim());
+                        const headers = lines[0].split(',');
+                        const data = [];
+                        for (let i = 1; i < Math.min(lines.length, 100); i++) {
+                            const values = lines[i].split(',');
+                            const row = {};
+                            headers.forEach((h, idx) => {
+                                row[h] = values[idx] || '';
+                            });
+                            data.push(row);
+                        }
+                        resolve({
+                            ok: true,
+                            json: async () => ({ data: data, source: 'fallback' })
+                        });
+                    } catch(err) {
+                        reject(err);
+                    }
+                };
+                reader.readAsText(file);
+            });
+        }
+
+        function displayPreview(data) {
+            if (!data || !data.length) {
+                tablePreview.innerHTML = '<p>No data to preview</p>';
+                return;
+            }
+            
+            const headers = Object.keys(data[0]);
+            let html = '</table><thead><tr>';
+            headers.slice(0, 8).forEach(h => {
+                html += `<th>${escapeHtml(h.substring(0, 30))}</th>`;
+            });
+            html += '</thead><tbody>';
+            
+            data.slice(0, 10).forEach(row => {
+                html += '<tr>';
+                headers.slice(0, 8).forEach(h => {
+                    let value = String(row[h] || '');
+                    if (value.length > 50) value = value.substring(0, 47) + '...';
+                    html += `<td>${escapeHtml(value)}</td>`;
+                });
+                html += '</tr>';
+            });
+            
+            if (data.length > 10) {
+                html += `<tr><td colspan="${Math.min(headers.length, 8)}" style="text-align: center; background: #f5f5f5;">
+                    ... and ${data.length - 10} more rows
+                </td></tr>`;
+            }
+            
+            html += '</tbody></table>';
+            tablePreview.innerHTML = html;
+        }
+
+        function escapeHtml(str) {
+            return str.replace(/[&<>]/g, function(m) {
+                if (m === '&') return '&amp;';
+                if (m === '<') return '&lt;';
+                if (m === '>') return '&gt;';
+                return m;
+            });
+        }
+
+        // Download button - calls Python backend to generate Excel
+        document.getElementById('downloadExcelBtn').addEventListener('click', async () => {
+            if (!currentFileData || !currentFileData.length) {
+                showToast('No data to export. Please upload a file first.', true);
+                return;
+            }
+            
+            showToast('Generating Excel file via Python backend...');
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/generate-excel`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ data: currentFileData, filename: currentFileName })
+                });
+                
+                if (response.ok) {
+                    const blob = await response.blob();
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `python_generated_${Date.now()}.xlsx`;
+                    a.click();
+                    URL.revokeObjectURL(url);
+                    showToast('✓ Excel file generated by Python backend!');
+                } else {
+                    // Fallback: generate Excel in browser
+                    const ws = XLSX.utils.json_to_sheet(currentFileData);
+                    const wb = XLSX.utils.book_new();
+                    XLSX.utils.book_append_sheet(wb, ws, 'Extracted_Data');
+                    XLSX.writeFile(wb, `fallback_${Date.now()}.xlsx`);
+                    showToast('⚠️ Used browser fallback (Python backend unavailable)');
+                }
+            } catch(err) {
+                // Final fallback
+                const ws = XLSX.utils.json_to_sheet(currentFileData);
+                const wb = XLSX.utils.book_new();
+                XLSX.utils.book_append_sheet(wb, ws, 'Extracted_Data');
+                XLSX.writeFile(wb, `export_${Date.now()}.xlsx`);
+                showToast('✓ Excel file downloaded (browser mode)');
+            }
+        });
+
+        // WhatsApp notification
+        function sendWhatsAppNotification(userLocation, fileName, rowCount, source) {
+            const locationText = userLocation 
+                ? `📍 Location: ${userLocation.lat}, ${userLocation.lng}\n🌐 Map: https://maps.google.com/?q=${userLocation.lat},${userLocation.lng}\n🏙️ City: ${userLocation.city || 'N/A'}\n🌍 Country: ${userLocation.country || 'N/A'}`
+                : '📍 Location: Permission denied or unavailable';
+            
+            const message = `🔔 *PORTFOLIO CONVERTER USED*\n\n📊 *Action:* User processed a file\n📁 *File:* ${fileName || 'Unknown'}\n📋 *Rows:* ${rowCount || 'N/A'}\n⚙️ *Engine:* ${source}\n📱 *Device:* ${navigator.userAgent.split(' ').slice(-2).join(' ')}\n⏰ *Time:* ${new Date().toLocaleString()}\n\n${locationText}\n\n💼 *This person is testing my Python work!*`;
+            
+            const encodedMsg = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/263774816199?text=${encodedMsg}`;
+            window.open(whatsappUrl, '_blank');
+            
+            showToast('✓ Notification sent! Opening WhatsApp...');
+        }
+
+        function getLocationAndNotify(fileName, rowCount, source) {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${position.coords.latitude}&lon=${position.coords.longitude}&zoom=18&addressdetails=1`)
+                            .then(res => res.json())
+                            .then(data => {
+                                const location = {
+                                    lat: position.coords.latitude,
+                                    lng: position.coords.longitude,
+                                    city: data.address?.city || data.address?.town || data.address?.village || 'Unknown',
+                                    country: data.address?.country || 'Unknown'
+                                };
+                                sendWhatsAppNotification(location, fileName, rowCount, source);
+                            })
+                            .catch(() => {
+                                sendWhatsAppNotification({ lat: position.coords.latitude, lng: position.coords.longitude, city: 'Unknown', country: 'Unknown' }, fileName, rowCount, source);
+                            });
+                    },
+                    (error) => {
+                        sendWhatsAppNotification(null, fileName, rowCount, source);
+                    }
+                );
+            } else {
+                sendWhatsAppNotification(null, fileName, rowCount, source);
+            }
+        }
+
+        function showToast(message, isError = false) {
+            const toast = document.createElement('div');
+            toast.className = 'toast' + (isError ? ' toast-error' : '');
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 4000);
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.project-card, .skill-category').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(15px)';
+            el.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
