@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virimai Signi | Python Business Intelligence & Data Analytics</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1a1a2e;
+            background: #f5f7fb;
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #3066f6, #6c47ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4a5568;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #3066f6;
+        }
+
+        /* Buttons & Badges */
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3066f6, #6c47ff);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(48,102,246,0.3);
+        }
+
+        .btn-outline {
+            border: 2px solid #3066f6;
+            color: #3066f6;
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: #3066f6;
+            color: white;
+        }
+
+        .tech-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: #e9ecef;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #495057;
+            margin: 0.25rem;
+        }
+
+        .tech-badge-python {
+            background: #3776ab20;
+            color: #3776ab;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: white;
+            padding: 4rem 2rem;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-highlight {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .stats-grid {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: #6c757d;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Project Cards */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1.5rem;
+        }
+
+        .project-header h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-body {
+            padding: 1.5rem;
+        }
+
+        .project-metrics {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-label {
+            font-weight: 600;
+            color: #495057;
+        }
+
+        .metric-value {
+            color: #3066f6;
+            font-weight: 700;
+        }
+
+        .code-snippet {
+            background: #1e1e2e;
+            color: #e0e0e0;
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        /* Skills Matrix */
+        .skills-matrix {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .skill-category h4 {
+            color: #3066f6;
+            margin-bottom: 1rem;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2rem;
+            border-left: 2px solid #3066f6;
+            padding-left: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 0;
+            width: 14px;
+            height: 14px;
+            background: #3066f6;
+            border-radius: 50%;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a2e;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .nav-container {
+                flex-direction: column;
+            }
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">🐍 Virimai Signi</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#projects">Python Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <h1>
+                15 years in sales & finance.<br>
+                Now I automate <span class="hero-highlight">business reporting with Python.</span>
+            </h1>
+            <p>I turn messy Excel files into automated data pipelines. Built Python scripts that save 15+ hours weekly using pandas, openpyxl, and Power BI. Business context + technical execution.</p>
+            <a href="#projects" class="btn btn-primary">View Python Projects ↓</a>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">15+</div>
+                    <div>Hours saved weekly</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100%</div>
+                    <div>Data accuracy</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">5+</div>
+                    <div>Python projects</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="container">
+        <div class="section-header">
+            <h2>🐍 Python Business Reporting Projects</h2>
+            <p>Real automation that solved actual business problems. Every project saved time and money.</p>
+        </div>
+
+        <div class="projects-grid">
+            <!-- Project 1: Automated Sales Report Generator -->
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>📊 Automated Sales Report Generator</h3>
+                </div>
+                <div class="project-body">
+                    <p><strong>The Problem:</strong> 5 stores sent separate Excel files weekly. Manual consolidation took 8 hours every Monday.</p>
+                    <div class="project-metrics">
+                        <div class="metric">
+                            <span class="metric-label">Time saved:</span>
+                            <span class="metric-value">8 hrs → 30 sec</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Accuracy improvement:</span>
+                            <span class="metric-value">100%</span>
+                        </div>
+                    </div>
+                    <div class="code-snippet">
+                        <pre style="margin:0; color:#e0e0e0;">import pandas as pd
+import glob
+
+# Auto-consolidate 5+ Excel files
+files = glob.glob("sales_data/*.xlsx")
+df = pd.concat([pd.read_excel(f) for f in files])
+
+# Calculate KPIs automatically
+weekly_report = df.groupby('Store')['Revenue'].sum()
+weekly_report.to_excel("Weekly_Report.xlsx")</pre>
+                    </div>
+                    <div>
+                        <span class="tech-badge tech-badge-python">pandas</span>
+                        <span class="tech-badge tech-badge-python">openpyxl</span>
+                        <span class="tech-badge">Automation</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2: Data Cleaning & ETL Pipeline -->
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>🧹 Data Cleaning & ETL Pipeline</h3>
+                </div>
+                <div class="project-body">
+                    <p><strong>The Problem:</strong> Customer data had duplicates, missing values, and inconsistent formats across 3 systems.</p>
+                    <div class="project-metrics">
+                        <div class="metric">
+                            <span class="metric-label">Data quality improvement:</span>
+                            <span class="metric-value">25% fewer discrepancies</span>
+                        </div>
+                    </div>
+                    <div class="code-snippet">
+                        <pre style="margin:0; color:#e0e0e0;">def clean_customer_data(df):
+    # Remove duplicates
+    df = df.drop_duplicates(subset=['Customer_ID'])
+    # Handle missing values
+    df['Email'] = df['Email'].fillna('missing@domain.com')
+    # Standardize text
+    df['Country'] = df['Country'].str.upper().str.strip()
+    return df
+
+cleaned_df = clean_customer_data(raw_df)</pre>
+                    </div>
+                    <div>
+                        <span class="tech-badge tech-badge-python">pandas</span>
+                        <span class="tech-badge tech-badge-python">numpy</span>
+                        <span class="tech-badge">ETL</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3: Business KPI Dashboard -->
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>📈 Business KPI Dashboard</h3>
+                </div>
+                <div class="project-body">
+                    <p><strong>The Problem:</strong> Leadership needed real-time metrics but data was scattered across SQL and Excel.</p>
+                    <div class="project-metrics">
+                        <div class="metric">
+                            <span class="metric-label">Reporting speed:</span>
+                            <span class="metric-value">5x faster</span>
+                        </div>
+                    </div>
+                    <div class="code-snippet">
+                        <pre style="margin:0; color:#e0e0e0;"># Calculate business KPIs in Python
+kpis = {
+    'Total_Revenue': df['Revenue'].sum(),
+    'Avg_Order_Value': df['Revenue'].mean(),
+    'Growth_Rate': ((current - previous) / previous) * 100,
+    'Top_Products': df.groupby('Product')['Qty'].sum().nlargest(5)
+}
+
+# Export clean data to Power BI
+df_clean.to_csv("dashboard_ready.csv", index=False)</pre>
+                    </div>
+                    <div>
+                        <span class="tech-badge tech-badge-python">pandas</span>
+                        <span class="tech-badge">Power BI</span>
+                        <span class="tech-badge">SQL</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Financial Reconciliation Tool (Bonus Project) -->
+        <div class="project-card" style="margin-top: 1rem;">
+            <div class="project-header" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+                <h3>💰 Financial Reconciliation Tool</h3>
+            </div>
+            <div class="project-body">
+                <p><strong>The Problem:</strong> Manual matching of 1000+ transactions to invoices took 10 hours weekly and had errors.</p>
+                <div class="project-metrics">
+                    <div class="metric">
+                        <span class="metric-label">Time saved:</span>
+                        <span class="metric-value">15 hours/week</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Discrepancy reduction:</span>
+                        <span class="metric-value">25%</span>
+                    </div>
+                </div>
+                <div class="code-snippet">
+                    <pre style="margin:0; color:#e0e0e0;">import pandas as pd
+from difflib import SequenceMatcher
+
+# Auto-match transactions to invoices
+transactions = pd.read_excel("bank_statement.xlsx")
+invoices = pd.read_excel("invoices.xlsx")
+
+# Fuzzy matching for partial matches
+matched = pd.merge(transactions, invoices, 
+                   on=['Amount', 'Date'], how='inner')
+
+# Flag discrepancies for review
+unmatched = transactions[~transactions['ID'].isin(matched['ID'])]</pre>
+                </div>
+                <div>
+                    <span class="tech-badge tech-badge-python">pandas</span>
+                    <span class="tech-badge">fuzzy matching</span>
+                    <span class="tech-badge">Excel automation</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="container" style="background: #f8f9fa; border-radius: 0;">
+        <div class="section-header">
+            <h2>🔧 Python & Data Skills Matrix</h2>
+            <p>Technical skills applied to real business problems</p>
+        </div>
+        <div class="skills-matrix">
+            <div class="skill-category">
+                <h4>📦 Data Manipulation</h4>
+                <div class="skill-list">
+                    <span class="tech-badge tech-badge-python">pandas</span>
+                    <span class="tech-badge tech-badge-python">numpy</span>
+                    <span class="tech-badge">Data Cleaning</span>
+                    <span class="tech-badge">ETL Pipelines</span>
+                    <span class="tech-badge">Merging/Joining</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h4>📊 Reporting & Visualization</h4>
+                <div class="skill-list">
+                    <span class="tech-badge tech-badge-python">matplotlib</span>
+                    <span class="tech-badge tech-badge-python">seaborn</span>
+                    <span class="tech-badge">Power BI</span>
+                    <span class="tech-badge">Excel Automation</span>
+                    <span class="tech-badge">openpyxl</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h4>🔄 Automation</h4>
+                <div class="skill-list">
+                    <span class="tech-badge">Scheduling</span>
+                    <span class="tech-badge">Email Reports</span>
+                    <span class="tech-badge">File Processing</span>
+                    <span class="tech-badge">Web Scraping</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h4>🗄️ Data Sources</h4>
+                <div class="skill-list">
+                    <span class="tech-badge">SQL</span>
+                    <span class="tech-badge">CSV/Excel</span>
+                    <span class="tech-badge">JSON/APIs</span>
+                    <span class="tech-badge">SQLite</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="container">
+        <div class="section-header">
+            <h2>💼 Business Experience That Informs My Code</h2>
+            <p>15 years understanding what reports actually matter</p>
+        </div>
+        <div class="timeline">
+            <div class="timeline-item">
+                <h3>Salesperson | Route Sales & Field Visits</h3>
+                <p style="color: #6c757d; margin-bottom: 0.5rem;">2014 - Present</p>
+                <p>Increased customer base by 20% YoY. Built Python scripts to track sales routes and automate daily reports. This is where I learned exactly what data sales teams need.</p>
+            </div>
+            <div class="timeline-item">
+                <h3>Cashier | High-Volume Transaction Processing</h3>
+                <p style="color: #6c757d; margin-bottom: 0.5rem;">2010 - 2014</p>
+                <p>Processed 150+ daily transactions with 100% accuracy. Built automated reconciliation tools in Python that reduced discrepancies by 25%.</p>
+            </div>
+            <div class="timeline-item">
+                <h3>Clerk | Administrative Support</h3>
+                <p style="color: #6c757d; margin-bottom: 0.5rem;">2005 - 2010</p>
+                <p>Maintained 99% data integrity. This is where I first saw how manual reporting creates bottlenecks.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="container">
+        <div class="contact-section">
+            <h2>📫 Let's Automate Your Reporting</h2>
+            <p style="margin: 1rem 0;">I build Python solutions for businesses tired of manual Excel work.</p>
+            <div class="contact-links">
+                <a href="mailto:vicnic75@gmail.com" class="btn btn-primary">✉️ virimaisigni@gmail.com</a>
+                <a href="https://www.linkedin.com/in/virimai-signi?trk=contact-info" class="btn btn-outline">🔗 LinkedIn</a>
+                <a href="https://github.com/Water-Pump-Repairs/vicnic" class="btn btn-outline">🐙 GitHub</a>
+            </div>
+            <p style="margin-top: 1.5rem; font-size: 0.9rem; color: #6c757d;">📞 +263774816199</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Virimai Signi | Python Business Intelligence | Built with HTML/CSS/JS</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.project-card, .skill-category, .timeline-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
